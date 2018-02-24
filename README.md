@@ -11,13 +11,13 @@ Also blobs have white color inside and black color outside, if asked I can add a
 These blobs are originally created as masks this is why the colors are the way they are.
 
 ### Requirements:
-'''
+```
 SciPy == 1.0.0
 
 NumPy == 1.14.0
 
 matplotlib == 2.1.2 (Optional: For viewing the blob)
-'''
+```
 
 (I used these versions but most of lower versions should work)
 
