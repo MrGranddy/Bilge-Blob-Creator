@@ -1,9 +1,10 @@
+import sys
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.interpolate import interp1d
 
 
-def create_blob(height, fluctuate_ratio=0.5, num_of_points=10, interp_kind='cubic', dif_radians=1e-3):
+def create_blob(height, fluctuate_ratio=0.5, num_of_points=10, interp_kind='cubic'):
     frame = np.ones((height, height)) * 255  # Default white background
     center = height // 2  # The center of the frame
     # Maximum radius that will fit the frame
@@ -64,12 +65,21 @@ def create_blob(height, fluctuate_ratio=0.5, num_of_points=10, interp_kind='cubi
                        high then the frequency will be higher.
         interp_kind: The kind of the interpolation, default is cubic but any polynomial degree can
                      be given as an integer.
-        dif_radians: When drawing the blob polar coordinates is used, this parameter desides the
-                     gap between each angle to calculate. Like infinitesimal angle.
 
     Returns:
         frame: The blob mask as an integer NumPy array.
 """
 
-plt.imshow(create_blob(1453, 0.7, 100), cmap='gray')
-plt.show()
+def main():
+    try:
+        size = int(sys.argv[1])
+        fluc_rate = float(sys.argv[2])
+        num_points = int(sys.argv[3])
+    except:
+        print("Invalid arguments. Please enter as [size, fluctuation rate, number of points]")
+        raise
+    plt.imshow(create_blob(size, fluc_rate, num_points), cmap='gray')
+    plt.show()
+
+if __name__ == "__main__":
+    main()
