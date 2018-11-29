@@ -1,7 +1,13 @@
-import sys
+import sys, os
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.interpolate import interp1d
+
+def create_many_blobs(number_of_blobs, height, fluctuate_ratio=0.5, num_of_points=10, interp_kind='cubic'):
+    frames = np.zeros((number_of_blobs, height, height), dtype=int)
+    for i in range(number_of_blobs):
+        frames[i, :, :] = create_blob(height, fluctuate_ratio, num_of_points, interp_kind)
+    return frames
 
 
 def create_blob(height, fluctuate_ratio=0.5, num_of_points=10, interp_kind='cubic'):
@@ -72,14 +78,27 @@ def create_blob(height, fluctuate_ratio=0.5, num_of_points=10, interp_kind='cubi
 
 def main():
     try:
-        size = int(sys.argv[1])
+        size = int(sys.argv[1]) # The height and width of the blob, affects resolution
         fluc_rate = float(sys.argv[2])
         num_points = int(sys.argv[3])
+        if(len(sys.argv) == 5):
+            number_of_blobs = int(sys.argv[4])
+        else:
+            number_of_blobs = 1
     except:
         print("Invalid arguments. Please enter as [size, fluctuation rate, number of points]")
         raise
-    plt.imshow(create_blob(size, fluc_rate, num_points), cmap='gray')
-    plt.show()
+
+    if not os.path.exists("./blobs"):
+        os.makedirs("./blobs")
+
+    
+    frames = create_many_blobs(number_of_blobs, size, fluc_rate, num_points)
+    for i in range(frames.shape[0]):
+        plt.imsave("./blobs/blob" + str(i+1) + ".png", frames[i, :, :], cmap="gray")
+        plt.show()
+
+
 
 if __name__ == "__main__":
     main()
