@@ -18,7 +18,7 @@ NumPy >= 1.14.0
 
 matplotlib >= 2.1.2 (Optional: For viewing the blob)
 
-(It probably also work with older versions, I did not check it.)
+(It probably also works with older versions, I did not check it.)
 ```
 
 ### Conclusion:
