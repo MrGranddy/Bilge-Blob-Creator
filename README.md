@@ -12,11 +12,13 @@ These blobs are originally created as masks this is why the colors are the way t
 
 ### Requirements:
 ```
-SciPy == 1.0.0
+SciPy >= 1.0.0
 
-NumPy == 1.14.0
+NumPy >= 1.14.0
 
-matplotlib == 2.1.2 (Optional: For viewing the blob)
+matplotlib >= 2.1.2 (Optional: For viewing the blob)
+
+(It probably also work with older versions, I did not check it.)
 ```
 
 (I used these versions but most of lower versions should work)
