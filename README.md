@@ -21,8 +21,6 @@ matplotlib >= 2.1.2 (Optional: For viewing the blob)
 (It probably also work with older versions, I did not check it.)
 ```
 
-(I used these versions but most of lower versions should work)
-
 ### Conclusion:
 Frames are created with a vectorized implementation so it is fast but if you want
 to create multiple frames you have to use a loop in this implementation but for multiple
